@@ -12,40 +12,110 @@
 <body>
 
     <div class="layui-card">
-        <div class="layui-card-header">文章类别管理</div>
+        <div class="layui-card-header">文章类别管理
+            <span><button type="button" id="addBook" class="layui-btn">添加</button></span>
+        </div>
         <div class="layui-card-body">
             <table class="layui-table">
                 <colgroup>
-                    <col >
-                    <col >
+                    <col>
+                    <col>
                     <col width="250">
                 </colgroup>
                 <thead>
                     <tr>
                         <th>分类别名</th>
-                        <th>	分类昵称</th>
-                        <th>	操作</th>
+                        <th> 分类昵称</th>
+                        <th> 操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>贤心</td>
-                        <td>2016-11-29</td>
-                        <td>行</td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
     </div>
+    <!-- 模板引擎 -->
+    <script type="text/html" id="tmp-table">
+        {{each data item}}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.alias}}</td>
+            <td>
+                <button type="button" id='btnRe' data-id='{{item.Id}}' class="layui-btn layui-btn-normal layui-btn-xs">编辑</button>
+                <button type="button" id="removBook" data-id='{{item.Id}}' class="layui-btn  layui-btn-danger layui-btn-xs">删除</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <!-- 添加弹出层 -->
+    <script type="text/html" id="reBooks">
+        <form class="layui-form" id="formAdd" action="">
+            <!-- 1 -->
+            <div class="layui-form-item">
+              <label class="layui-form-label">分类名称</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
+              </div>
+            </div> <!-- 1 -->
+            <div class="layui-form-item">
+              <label class="layui-form-label">分类别名</label>
+              <div class="layui-input-block">
+                <input type="text" name="alias" required  lay-verify="required" placeholder="请输入分类别名" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                </div>
+              </div>
+        </form>
+    </script>
+
+
+           <!-- 定义修改弹出 层form -->
+           <script type="text/html" id="addBooks" >
+            <form class="layui-form" id="formedit" lay-filter="form-edit">
+            <input type="hidden" name="Id">
+                <!-- 1 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required lay-verify="required" placeholder="请输入分类名称"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!-- 1 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类别名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="alias" required lay-verify="required" placeholder="请输入分类别名"
+                            autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即修改</button>
+                    </div>
+                </div>
+            </form>
+        </script>
+
 
 
     <script src="/assets/lib/jquery.js"></script>
 
+    <!-- <script src="/assets/lib/layui/layui.all.js"></script> -->
     <script src="/assets/lib/layui/layui.all.js"></script>
+
+    <script src="/assets/js/baseAPI.js"></script>
 
     <script src="/style.js"></script>
 
-    <script src="/assets/js/baseAPI.js"></script>
+    <script src="/assets/lib/template-web.js"></script>
+
 
     <script src="/assets/js/atacilre/art_cate.js"></script>
 

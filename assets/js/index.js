@@ -26,7 +26,7 @@ function getUserinfo() {
 function judge(user){
     // console.log(123);
     // 进行判断是否有管理员名 有就渲染没有就渲染自己的名称
-    var name = user.nickname ||user.username
+    var name = user.nickname || user.username
     $('.welcome').html("Hello &nbsp;" + name)
     // 在进行是否有图片 有图片 圆圈就 隐藏
     if(user.user_pic !== null) {   //代表有照片
